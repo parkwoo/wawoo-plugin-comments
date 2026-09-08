@@ -4,9 +4,17 @@ Adds file-based comments to posts: an inline submit form and approved-comment li
 
 ## Install (requires wawoo-cms core)
 
+Get the plugin:
+
+```bash
+git clone https://github.com/parkwoo/wawoo-plugin-comments
+```
+
+Then link it from a wawoo-cms checkout:
+
 ```
 cd /path/to/wawoo-cms
-php bin/wawoo plugin:link /home/git/wawoo-plugin-comments
+php bin/wawoo plugin:link /path/to/wawoo-plugin-comments
 ```
 
 Then enable it: add `comments` to ENABLED_PLUGINS in config.local.php (or use the admin Plugins page).
@@ -17,7 +25,7 @@ Tests must run from inside a wawoo-cms checkout so core constants/classes are av
 
 ```
 cd /path/to/wawoo-cms
-php bin/wawoo plugin:link /home/git/wawoo-plugin-comments   # symlinks plugins/comments + tests
+php bin/wawoo plugin:link /path/to/wawoo-plugin-comments   # symlinks plugins/comments + tests
 phpunit tests/Plugin/CommentsInjectFormTest.php tests/Plugin/CommentsSecurityTest.php tests/Plugin/CommentsStoreTest.php
 ```
 
@@ -54,13 +62,13 @@ Manifests require `core >=1.0.0`; this repo is tagged `v1.0.0`; bump manifest + 
   moving branch:
 
       cd /path/to/wawoo-cms
-      git -C /home/git/wawoo-plugin-comments checkout v1.0.0
-      php bin/wawoo plugin:link /home/git/wawoo-plugin-comments
+      git -C /path/to/wawoo-plugin-comments checkout v1.0.0
+      php bin/wawoo plugin:link /path/to/wawoo-plugin-comments
 
   For self-contained Docker images use `--copy` (symlinks dangle in an
   image):
 
-      php bin/wawoo plugin:link /home/git/wawoo-plugin-comments --copy
+      php bin/wawoo plugin:link /path/to/wawoo-plugin-comments --copy
 
 - **Configuration & persistent data**: Comments (incl. pending moderation,
   author email/IP/UA) are stored under the cache state volume at
@@ -75,7 +83,7 @@ Manifests require `core >=1.0.0`; this repo is tagged `v1.0.0`; bump manifest + 
       docker run --rm -v <cache-volume>:/data -v $PWD:/backup alpine \
         tar czf /backup/cache.tgz -C /data .
       cd /path/to/wawoo-cms
-      php bin/wawoo plugin:link /home/git/wawoo-plugin-comments   # new version
+      php bin/wawoo plugin:link /path/to/wawoo-plugin-comments   # new version
       phpunit tests/Plugin/Comments*Test.php
 
 - **Rollback**: `git checkout` the previously recorded tag in this repo,
