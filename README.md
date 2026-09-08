@@ -81,3 +81,18 @@ Manifests require `core >=1.0.0`; this repo is tagged `v1.0.0`; bump manifest + 
 - **Rollback**: `git checkout` the previously recorded tag in this repo,
   re-run `plugin:link` (with `--copy` for Docker), then restore the cache
   volume backup from step above and restart.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+## Contributing & security
+
+This is a standalone plugin/theme for [wawoo-cms](https://github.com/parkwoo/wawoo-cms).
+Bugs, features and security reports follow the core project's policies:
+
+- [CONTRIBUTING.md](https://github.com/parkwoo/wawoo-cms/blob/main/CONTRIBUTING.md)
+- [SECURITY.md](https://github.com/parkwoo/wawoo-cms/blob/main/SECURITY.md)
+- Versioning and rollback for this repository is described in the
+  "Versioning, update & rollback" section above; releases are published as
+  GitHub Releases on this repository's tags.
