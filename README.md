@@ -28,3 +28,17 @@ phpunit tests/Plugin/CommentsInjectFormTest.php tests/Plugin/CommentsSecurityTes
 ### Test dependencies
 
 The copied tests exercise only core + the comments plugin classes (`Form`, `Store`, `AdminPanel`, `Config`, `InjectForm`) — no other plugin needs to be enabled or linked for them to pass. `CommentsSecurityTest` spawns CLI subprocesses (`PHP_BINARY` + `shell_exec`) that need a working `session_save_path` and PHP session support.
+
+## CI
+
+GitHub Actions runs on PHP 8.2 & 8.3 — it clones wawoo-cms core, links this plugin via `php bin/wawoo plugin:link --copy`, and runs `phpunit tests/Plugin/Comments*Test.php`.
+
+## Dependencies
+
+Runtime: `wawoo-cms >= 1.0.0` (this plugin's manifest requires core).
+
+Stores runtime data under `cache/comments/` inside wawoo-cms (web-denied cache volume). No cross-plugin dependency.
+
+## Release
+
+Manifests require `core >=1.0.0`; this repo is tagged `v1.0.0`; bump manifest + tag together on releases.
